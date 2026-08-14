@@ -1,121 +1,141 @@
 # OT Security for IT People
 
-A plain-English introduction to operational technology and industrial control system security, written for IT and security professionals who suddenly own a plant.
+Plain English intro to OT and ICS security for IT and security people who just got handed a plant.
 
-Most OT security material is written by OT people for OT people. The actual audience is often someone with twenty years of enterprise IT experience who just got handed a manufacturing site, a water treatment facility, or a building management system, and is discovering that everything they know is subtly wrong.
+Most OT material is written by OT people for OT people. But the guy who actually needs it is usually somebody with twenty years of enterprise IT who inherited a manufacturing site in a reorg and is finding out that everything he knows is quietly wrong.
 
-This is for that person.
-
----
-
-## Who this is for
-
-- IT and security leaders who inherited an OT environment through a merger, reorg, or promotion
-- CISOs whose remit just expanded past the corporate network
-- Security consultants asked to assess an environment they've never worked in
-- Anyone who has been told "don't scan that" and wants to understand why
-
-## Who this is not for
-
-- Experienced OT security practitioners. You know this already.
-- Control systems engineers. You'll find the IT framing simplistic, and you'd be right.
+That's who this is for.
 
 ---
 
-## What's inside
+## How to Show Up
 
-| File | What it is |
-|---|---|
-| `why-it-thinking-breaks.md` | The assumptions that don't transfer, with concrete examples |
-| `the-inversion.md` | Safety, availability, confidentiality — and why your priorities flip |
-| `purdue-model.md` | The reference architecture, explained without the jargon |
-| `what-not-to-scan.md` | Why an ordinary vulnerability scan can stop a production line |
-| `patching-reality.md` | Patch management when the system runs 24/7 and the vendor voids support |
-| `first-ten-things.md` | What to actually do in your first month |
-| `nist-800-82-practical.md` | The standard, translated into decisions |
-| `talking-to-engineers.md` | How to not get stonewalled by the plant team |
-| `glossary.md` | PLC, HMI, SCADA, DCS, historian, safety instrumented system, and the rest |
+**Security Is a Team Sport**, and in an OT environment you're the newest guy on a team that's been running fine without you since 2008.
+
+The controls engineer isn't obstructing you. They've watched IT push agents that crashed HMIs and scans that took a line down. Their skepticism is earned. You're going to have to earn your way past it.
+
+**No One Is as Dumb as All of Us**, and that cuts both ways. Your framework knowledge plus their process knowledge beats either one alone. Neither is enough by itself.
+
+More in [PRINCIPLES.md](https://github.com/HarrisonWard/.github/blob/main/PRINCIPLES.md).
 
 ---
 
-## The single most important idea
+## Who It's For
 
-In IT, the priority order is **confidentiality, integrity, availability**.
+- IT and security leaders who inherited an OT environment through a merger or a reorg
+- CISOs whose scope just grew past the corporate network
+- Consultants asked to assess something they've never worked in
+- Anybody who got told "don't scan that" and wants to understand why
 
-In OT, it is **safety, availability, integrity, confidentiality** — and safety is not a tiebreaker, it is a hard constraint that outranks everything else.
+## Who It's Not For
 
-This is not a philosophical difference. It has concrete operational consequences:
+Experienced OT practitioners. You know this.
 
-- A system that fails closed protects data. A system that fails closed in a plant can hurt someone.
-- Taking a server offline to patch is an inconvenience. Taking a controller offline can stop a batch process mid-run and destroy product, or worse.
-- An unauthenticated protocol is a critical finding in IT. In OT it may be the only protocol a 2003-vintage controller speaks, and the mitigation is network architecture, not authentication.
-
-Every recommendation you make will be evaluated against that priority order by people whose job is physical safety. If you lead with confidentiality, they will conclude you don't understand their environment, and they will be correct.
-
----
-
-## The credibility problem
-
-You will walk into a plant where the controls engineer has been running that system for eighteen years without an incident. From their perspective, you are corporate IT arriving with opinions.
-
-They are not wrong to be skeptical. IT has a genuine track record of breaking things in OT environments — pushing agents to systems that couldn't handle them, scanning networks that fell over, forcing patches that voided vendor support.
-
-`talking-to-engineers.md` covers this in detail. The short version:
-
-- **Ask before you recommend.** Your first month is questions, not findings.
-- **Learn what the process actually does.** Not the network diagram. The physical process.
-- **Never touch anything without the operator's agreement.** Not once. The one time you do it will define your relationship permanently.
-- **Bring them something useful early.** Visibility they didn't have. A vendor conversation you handled. Anything that makes their job easier before you make it harder.
+Controls engineers. You'll find the IT framing simplistic and you'd be right.
 
 ---
 
-## First ten things
+## The One Thing That Matters Most
 
-Condensed from `first-ten-things.md`:
+In IT, it's **confidentiality, integrity, availability**.
+
+In OT, it's **safety, availability, integrity, confidentiality**. And safety isn't a tiebreaker. It's a hard wall that outranks everything.
+
+That's not philosophy. It has teeth:
+
+- A system that fails closed protects data. A system that fails closed in a plant can hurt somebody.
+- Taking a server down to patch is annoying. Taking a controller down can stop a batch mid-run and destroy product. Or worse.
+- An unauthenticated protocol is a critical finding in IT. In OT it might be the only thing a 2003 controller speaks, and the fix is network architecture, not authentication.
+
+Everything you recommend gets weighed against that order by people whose job is keeping humans alive. Lead with confidentiality and they'll decide you don't understand their plant. They'll be right.
+
+---
+
+## The Credibility Problem
+
+You're going to walk into a plant where somebody has run that system for eighteen years without an incident. From where they're standing, you're corporate IT showing up with opinions.
+
+They're not wrong to be suspicious. IT has a real track record of breaking things in OT. Agents pushed to systems that couldn't handle them. Scans that took networks over. Patches forced through that voided vendor support.
+
+`talking-to-engineers.md` goes into it. Short version:
+
+**Ask Before You Recommend.** Your first month is questions, not findings.
+
+**Learn What the Process Does.** Not the network diagram. The actual physical thing being made or moved.
+
+**Never Touch Anything Without the Operator Agreeing.** Not once. The one time you do will define that relationship permanently.
+
+**Bring Them Something Useful Early.** Visibility they didn't have. A vendor conversation you handled. Anything that makes their job easier before you make it harder.
+
+---
+
+## First Ten Things
+
+From `first-ten-things.md`:
 
 1. Find out what the process does and what happens if it stops
 2. Get an asset inventory, even a bad one on a whiteboard
-3. Find every connection between the OT network and anything else — there are more than anyone thinks
-4. Find the remote access paths, especially vendor ones
-5. Find out who can change a controller and how that's authorized
-6. Check whether backups of controller configurations exist and have ever been restored
-7. Understand the vendor support terms before you touch anything
-8. Establish passive visibility before active anything
-9. Find out what the safety instrumented system is and confirm it's independent
-10. Meet the people. Especially the ones who've been there longest.
+3. Find every connection between OT and anything else. There are more than anybody thinks.
+4. Find the remote access paths, especially the vendor ones
+5. Find out who can change a controller and how that gets authorized
+6. Check whether controller configs are backed up and whether a restore has ever been tested
+7. Read the vendor support terms before you touch anything
+8. Get passive visibility before you get active anything
+9. Find the safety instrumented system and confirm it's actually independent
+10. Meet the people. Especially whoever's been there longest.
 
-Notice that none of the first ten involve deploying a control. That's deliberate.
+None of the first ten deploy a control. That's on purpose.
 
 ---
 
-## What this is not
+## What's in Here
 
-Not engineering guidance. Not a safety standard. Not a substitute for the vendor documentation, your site's safety procedures, or a qualified controls engineer.
+| File | What it is |
+|---|---|
+| `why-it-thinking-breaks.md` | The assumptions that don't transfer |
+| `the-inversion.md` | Safety, availability, integrity, confidentiality |
+| `purdue-model.md` | The reference architecture without the jargon |
+| `what-not-to-scan.md` | Why a normal vuln scan can stop a line |
+| `patching-reality.md` | Patching something that runs 24/7 |
+| `first-ten-things.md` | Your first month |
+| `nist-800-82-practical.md` | The standard, in decisions |
+| `talking-to-engineers.md` | Not getting stonewalled |
+| `glossary.md` | PLC, HMI, SCADA, DCS, historian, SIS, all of it |
 
-Do not take an action in an OT environment based on a README. The consequences of getting it wrong are not measured in downtime.
+---
 
-Nothing here is drawn from any client engagement or specific facility.
+## What This Isn't
+
+Not engineering guidance. Not a safety standard. No substitute for the vendor docs, your site's safety procedures, or a qualified controls engineer.
+
+Don't take an action in an OT environment because a README said so. The consequences here aren't measured in downtime.
+
+Nothing here comes from a client engagement or a specific facility.
 
 ---
 
 ## Contributing
 
-Especially interested in perspectives from controls engineers who've worked with IT teams — including what we consistently get wrong. Also sector-specific notes: water, power, manufacturing, building automation, transportation.
+I especially want controls engineers who've worked with IT teams, including what we consistently get wrong. Also sector notes: water, power, manufacturing, building automation, transportation.
 
-Nothing site-identifiable. Nothing that would help someone attack a real facility.
+Nothing site-identifiable. Nothing that helps somebody attack a real facility. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ---
 
 ## License
 
-[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Use it, adapt it, teach from it. Just give credit.
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Use it, change it, teach from it. Just say where you got it.
 
 © 2026 Harrison Ward
 
 ---
 
-## About
+## Me
 
-Cyber risk and technology executive. Advised on cyber risk across IT and OT/ICS/SCADA environments for critical-infrastructure clients as SVP in Kroll's Cyber Risk practice, including regulatory readiness against NIST 800-82. Earlier career included SCADA system analysis and forensic recovery on major industrial matters.
+Cyber risk and technology exec. Advised on cyber risk across IT and OT/ICS/SCADA for critical infrastructure clients as SVP in Kroll's Cyber Risk practice, including regulatory readiness against NIST 800-82. Earlier on, did SCADA analysis and forensic recovery on industrial matters.
 
-More at [github.com/HarrisonWard](https://github.com/HarrisonWard) · [LinkedIn](https://linkedin.com/in/harrisonaward)
+[github.com/HarrisonWard](https://github.com/HarrisonWard) · [LinkedIn](https://linkedin.com/in/harrisonaward)
+
+---
+
+*Published under [these principles](https://github.com/HarrisonWard/.github/blob/main/PRINCIPLES.md). Security Shouldn't Be Paywalled.*
