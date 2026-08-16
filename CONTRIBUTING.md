@@ -1,19 +1,20 @@
 # Contributing
 
-Contributions welcome. **No One Is as Dumb as All of Us**, which is exactly why more eyes on this makes it better.
+Contributions welcome. **No One Is as Dumb as All of Us**, which is exactly why more eyes on this makes it better, and in this repo the eyes I want most wear hard hats.
 
 ## Useful
 
-- Corrections. Something's wrong here, tell me.
-- Sector versions, especially industries I haven't spent much time in.
+- Controls engineers' corrections, especially the ways this IT framing gets your world wrong, and the things IT teams consistently break that this repo forgot to warn about.
+- Sector notes: water, power, manufacturing, building automation, transportation. The differences are real and underdocumented.
+- War stories with the serial numbers filed off: what an IT assumption cost, what a good IT-OT relationship looked like.
+- Glossary additions an IT person will actually meet in their first year.
 - Rewrites that say the same thing in fewer words. Especially these.
-- Real notes on what worked and what didn't.
 
 ## Not Useful
 
-- Anything client-identifiable. No company names, no anonymized-but-obvious details, nothing lifted from a real engagement.
-- Vendor promotion. Tool mentions are fine when they earn their place. Marketing isn't.
-- Scope creep into things this repo is deliberately not about. See the README.
+- Anything site-identifiable, and nothing that helps somebody attack a real facility: no exploitation details, no target-shaped specifics, no "here is how you would actually break X." This repo teaches defenders to not break plants, full stop.
+- Vendor promotion, including OT security platforms. Tool mentions are fine when they earn their place. Marketing isn't.
+- Deep engineering content. This is an orientation library; the vendor docs and standards own the depth.
 
 ## How
 
@@ -23,11 +24,11 @@ Open an issue first for anything big so we can agree on the shape before you spe
 
 Plain English. If a sentence needs a second read, rewrite it.
 
-Second person. "You must," not "The organization shall."
+IT reference points are welcome, the audience thinks in them, and so is telling the audience where the analogy breaks.
 
 Say why, not just what.
 
-Short. Length isn't thoroughness.
+Short. The reader has a plant to get back to.
 
 ## License
 

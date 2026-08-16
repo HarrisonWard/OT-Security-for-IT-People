@@ -102,6 +102,8 @@ None of the first ten deploy a control. That's on purpose.
 | `talking-to-engineers.md` | Not getting stonewalled |
 | `glossary.md` | PLC, HMI, SCADA, DCS, historian, SIS, all of it |
 
+When you are ready to test what you inherited, the [tabletop library](https://github.com/HarrisonWard/tabletop-library) has a full OT plant event pack, built to make the IT-OT seam argue with itself in a room instead of during an incident.
+
 ---
 
 ## What This Isn't
